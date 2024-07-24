@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>BPX  Dashboard</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendors/mdi/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendors/css/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/vendors/font-awesome/css/font-awesome.min.css') }}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End Plugin css for this page -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='assets/images/favicon.png') }}" />
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:../../partials/_navbar.html -->
+      <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-start">
+          <a class="navbar-brand brand-logo" href="#" ><img src="{{ url_for('static', filename='assets/images/bpxlogo.svg') }}" alt="logo" />
+          </a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-stretch">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <div class="search-field d-none d-md-block">
+            <form class="d-flex align-items-center h-100" action="#">
+              <div class="input-group">
+                <div class="input-group-prepend bg-transparent">
+                  <i class="input-group-text border-0 mdi mdi-magnify"></i>
+                </div>
+                <input type="text" class="form-control bg-transparent border-0" placeholder="Search projects">
+              </div>
+            </form>
+          </div>
+          <ul class="navbar-nav navbar-nav-right">
+       
+            <li class="nav-item d-none d-lg-block full-screen-link">
+              <a class="nav-link">
+                <i class="mdi mdi-fullscreen" id="fullscreen-button"></i>
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" id="messageDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="mdi mdi-email-outline"></i>
+                <span class="count-symbol bg-warning"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                <h6 class="p-3 mb-0">Messages</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="../../assets/images/faces/face4.jpg" alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Mark send you a message</h6>
+                    <p class="text-gray mb-0"> 1 Minutes ago </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="../../assets/images/faces/face2.jpg" alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Cregh send you a message</h6>
+                    <p class="text-gray mb-0"> 15 Minutes ago </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <img src="../../assets/images/faces/face3.jpg" alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject ellipsis mb-1 font-weight-normal">Profile picture updated</h6>
+                    <p class="text-gray mb-0"> 18 Minutes ago </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <h6 class="p-3 mb-0 text-center">4 new messages</h6>
+              </div>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
+                <i class="mdi mdi-bell-outline"></i>
+                <span class="count-symbol bg-danger"></span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-end navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <h6 class="p-3 mb-0">Notifications</h6>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-success">
+                      <i class="mdi mdi-calendar"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject font-weight-normal mb-1">Event today</h6>
+                    <p class="text-gray ellipsis mb-0"> Just a reminder that you have an event today </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-warning">
+                      <i class="mdi mdi-cog"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject font-weight-normal mb-1">Settings</h6>
+                    <p class="text-gray ellipsis mb-0"> Update dashboard </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-info">
+                      <i class="mdi mdi-link-variant"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content d-flex align-items-start flex-column justify-content-center">
+                    <h6 class="preview-subject font-weight-normal mb-1">Launch Admin</h6>
+                    <p class="text-gray ellipsis mb-0"> New admin wow! </p>
+                  </div>
+                </a>
+                <div class="dropdown-divider"></div>
+                <h6 class="p-3 mb-0 text-center">See all notifications</h6>
+              </div>
+            </li>
+            <li class="nav-item nav-logout d-none d-lg-block">
+              <a class="nav-link" href="#">
+                <i class="mdi mdi-power"></i>
+              </a>
+            </li>
+            <li class="nav-item nav-settings d-none d-lg-block">
+              <a class="nav-link" href="#">
+                <i class="mdi mdi-format-line-spacing"></i>
+              </a>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+          <ul class="nav">
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <span class="menu-title">Dashboard</span>
+                <i class="mdi mdi-home menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/projectoverview">
+                <span class="menu-title">Project Overview</span>
+                <i class="mdi mdi-clipboard-outline menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/finance">
+                <span class="menu-title">Financial Foecast</span>
+                <i class="mdi mdi-chart-line menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/projectactivity">
+                <span class="menu-title">Project Activity</span>
+                <i class="mdi  mdi-clipboard-text menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/studytimeline">
+                <span class="menu-title">Project Study</span>
+                <i class="mdi  mdi-clipboard-text menu-icon"></i>
+              </a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link" href="/notes_issues">
+                <span class="menu-title">Notes & Issue</span>
+                <i class="mdi mdi-calendar-check menu-icon"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/project_milestone">
+                <span class="menu-title">Projectt Milestone</span>
+                <i class="mdi mdi-calendar-check menu-icon"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <div class="page-header">
+              <h3 class="page-title"> Financial Forecast </h3>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Financial Forecas</li>
+                </ol>
+              </nav>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Top 5 Accrual v/s Cashout</h4>
+                    <!-- <canvas id="lineChart" style="height:250px"></canvas> -->
+                     <div id="top5" style="width: 500px; height: 420px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Bottom 5 Accrual v/s Cashout</h4>
+                    <!-- <canvas id="barChart" style="height:230px"></canvas> -->
+                    <div id="bottom5" style="width: 500px; height: 420px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Project Type</h4>
+                    <!-- <canvas id="areaChart" style="height:250px"></canvas> -->
+                    <div id="piechart" style="width: 500px; height: 420px;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Doughnut chart</h4>
+                    <div class="doughnutjs-wrapper d-flex justify-content-center">
+                      <canvas id="chartJSContainer"></canvas>
+                      <canvas id="chartJSContainer2"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                        <div id="table_div"></div>
+                        <div id="charts_div"></div>
+<!--                     <h4 class="card-title">Pie chart</h4>
+                    <div class="doughnutjs-wrapper d-flex justify-content-center">
+                      <canvas id="pieChart"></canvas>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+<!--               <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Scatter chart</h4>
+                    <canvas id="scatterChart" style="height:250px"></canvas>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+          <!-- content-wrapper ends -->
+          <!-- partial:../../partials/_footer.html -->
+          <footer class="footer">
+            <div class="d-sm-flex justify-content-center justify-content-sm-between">
+              <span class="text-muted text-center text-sm-left d-block d-sm-inline-block"><h4>BPX Team</h4></span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Admin@biopharmatics.com</span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="{{ url_for('static', filename='assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <script src="{{ url_for('static', filename='assets/vendors/chart.js/chart.umd.js') }}"></script>
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ url_for('static', filename='assets/js/off-canvas.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/misc.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/settings.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/todolist.js') }}"></script>
+    <script src="{{ url_for('static', filename='assets/js/jquery.cookie.js') }}"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page -->
+    <script src="{{ url_for('static', filename='assets/js/chart.js') }}"></script>
+    <!-- End custom js for this page -->
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(fetchDataAndDrawChart);
+
+      function fetchDataAndDrawChart() {
+        fetch('/finance_projecttype')
+          .then(response => response.json())
+          .then(jsonData => {
+            drawChart(jsonData);
+          })
+          .catch(error => {
+            console.error('Error fetching data:', error);
+          });
+      }
+
+      function drawChart(jsonData) {
+        // Convert JSON data to an array format that google.visualization.arrayToDataTable can use
+        var dataArray = [['Task', 'Hours per Day']];
+        for (var key in jsonData) {
+          dataArray.push([key, jsonData[key]]);
+        }
+
+        var data = google.visualization.arrayToDataTable(dataArray);
+
+        var options = {
+          title: 'Project Types',pieHole: 0.4, height: 400,
+          legend: {position: 'top', maxLines: 3},
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+
+      }
+
+    </script>
+    <script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawStacked);
+
+      async function fetchData() {
+        // Replace this with your actual API call
+        const response = await fetch('/top5');
+        const data = await response.json();
+        return data;
+      }
+
+      async function drawStacked() {
+        const apiData = await fetchData();
+
+        // Prepare the data
+        const chartData = [['Project', 'LT Budget', 'Accrual', 'Cashout']];
+        apiData.forEach(item => {
+          chartData.push([item[0], item[1], item[2], item[3]]);
+        });
+
+        var data = google.visualization.arrayToDataTable(chartData);
+
+        // Set the chart options
+        var options = {
+          title: 'Top 5 Accrual v/s Cashout',  height: 400,
+          legend: {position: 'top', maxLines: 3},
+          isStacked: 'percent',
+          hAxis: {
+            minValue: 0,
+            ticks: [0, 0.25, 0.5, 0.75, 1]
+          },
+          vAxis: {
+            title: 'ProjectID'
+          }
+        };
+
+        // Draw the chart
+        var chart = new google.visualization.BarChart(document.getElementById('top5'));
+        chart.draw(data, options);
+      }
+////////////////////////////////////////////////////////////////////////
+      google.charts.load('current', { packages: ['corechart', 'bar'] });
+    google.charts.setOnLoadCallback(drawStacked2);
+
+      async function fetchData2() {
+        // Replace this with your actual API call
+        const response = await fetch('/bottom5');
+        const data = await response.json();
+        return data;
+      }
+
+      async function drawStacked2() {
+        const apiData2 = await fetchData2();
+
+        // Prepare the data
+        const chartData2 = [['Project', 'LT Budget', 'Accrual', 'Cashout']];
+        apiData2.forEach(item => {
+          chartData2.push([item[0], item[1], item[2], item[3]]);
+        });
+
+        var data2 = google.visualization.arrayToDataTable(chartData2);
+
+        // Set the chart options
+        var options2 = {
+          title: 'Bottom 5 Accrual v/s Cashout',  height: 400,
+          legend: {position: 'top', maxLines: 3},
+          isStacked: 'percent',
+          hAxis: {
+            minValue: 0,
+            ticks: [0, 0.25, 0.5, 0.75, 1]
+          },
+          vAxis: {
+            title: 'ProjectiD'
+          }
+        };
+
+        // Draw the chart
+        var chart2 = new google.visualization.BarChart(document.getElementById('bottom5'));
+        chart2.draw(data2, options2);
+      }
+/////////////////////////////////////////////////////////////////////
+   // Custom plugin to draw the needle
+      const gaugeNeedle = {
+        id: 'gaugeNeedle',
+        afterDatasetDraw(chart, args, options) {
+          const { ctx, chartArea: { top, bottom, left, right, width, height }, scales: { r } } = chart;
+          ctx.save();
+
+          const needleValue = chart.config.data.datasets[0].data[1]; // Current value
+          const dataTotal = chart.config.data.datasets[0].data.reduce((a, b) => a + b, 0);
+          const angle = Math.PI + (1 / dataTotal) * needleValue * Math.PI;
+          const cx = chart._metasets[0].data[0].x;
+          const cy = chart._metasets[0].data[0].y;
+
+          // Draw needle
+          ctx.translate(cx, cy);
+          ctx.rotate(angle);
+          ctx.beginPath();
+          ctx.moveTo(0, -2);
+          ctx.lineTo(height / 2 - 10, 0);
+          ctx.lineTo(0, 2);
+          ctx.fillStyle = 'black';
+          ctx.fill();
+          ctx.restore();
+
+          // Draw needle dot
+          ctx.beginPath();
+          ctx.arc(cx, cy, 5, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      };
+
+      // Register the plugin
+      Chart.register(gaugeNeedle);
+
+      // Gauge 1: Total Budget vs Current Spend
+      var options1 = {
+        type: 'doughnut',
+        data: {
+          labels: ["Total Budget", "Current Spend"],
+          datasets: [{
+            label: 'Total Spend and Current Spend',
+            data: [13512000, 6003251],
+            backgroundColor: ["Red", "Yellow"]
+          }]
+        },
+        options: {
+          rotation: 270, // start angle in degrees
+          circumference: 180, // sweep angle in degrees
+          plugins: {
+            datalabels: {
+              display: false
+            }
+          }
+        }
+      };
+
+      var ctx1 = document.getElementById('chartJSContainer').getContext('2d');
+      new Chart(ctx1, options1);
+
+      // Gauge 2: Total Status vs Current Status
+      var options2 = {
+        type: 'doughnut',
+        data: {
+          labels: ["Total Status", "Current Status"],
+          datasets: [{
+            label: "Total Status and Current Status",
+            data: [75, 32],
+            backgroundColor: ["Yellow", "Green"]
+          }]
+        },
+        options: {
+          rotation: 270, // start angle in degrees
+          circumference: 180, // sweep angle in degrees
+          plugins: {
+            datalabels: {
+              display: false
+            }
+          }
+        }
+      };
+
+      var ctx2 = document.getElementById('chartJSContainer2').getContext('2d');
+      new Chart(ctx2, options2);
+
+////////////////////////////////////////////////////////////////////////////////
+      google.charts.load('current', { packages: ['table', 'bar'] });
+      google.charts.setOnLoadCallback(drawTable5);
+
+      async function fetchData5() {
+        // Simulate fetching data from API
+        const response5 = await fetch('/testtable');
+        const data5 = await response5.json();
+        return data5.result;
+      }
+
+      async function drawTable5() {
+        const apiData5 = await fetchData5();
+
+        // Prepare data for the table
+        const data = new google.visualization.DataTable();
+        data.addColumn('string', 'Project Name');
+        data.addColumn('string', 'Type');
+        data.addColumn('string', 'Status');
+        data.addColumn('date', 'Start Date');
+        data.addColumn('date', 'End Date');
+        data.addColumn('number', 'Budget');
+        data.addColumn('number', 'Accrual Amount');
+        data.addColumn('number', 'Cashout');
+        data.addColumn('number', 'Milestone Completion');
+        data.addColumn('number', 'Total Milestone');
+        data.addColumn('number', 'Paid Milestone');
+
+        const rows = [];
+        for (const [key, value] of Object.entries(apiData5)) {
+          rows.push([
+            key,
+            value.type,
+            value.Status,
+            new Date(value.startdate),
+            new Date(value.enddate),
+            value.LT_Budget,
+            value.LT_Budget_Accrual,
+            value.LT_Budget_Cashout,
+            value.milestonecompletion_per * 100,
+            value.Totalmilestone,
+            value.actualprogess,
+            
+          ]);
+        }
+        data.addRows(rows);
+
+        // Set table options
+        const tableOptions = {
+          showRowNumber: true,
+          page: 'enable',
+          pageSize: 10,
+          width: '100%',
+          height: '100%'
+        };
+
+        // Draw the table
+        const table = new google.visualization.Table(document.getElementById('table_div'));
+        table.draw(data, tableOptions);
+
+        // Draw the embedded bar charts
+        google.visualization.events.addListener(table, 'ready', function () {
+          for (let i = 0; i < rows.length; i++) {
+            const rowIndex = table.getTableRowIndex(i);
+            drawBarChart(i, 'chart_div_' + i, rows[i].slice(4, 7));
+          }
+        });
+      }
+
+      function drawBarChart(index, containerId, data) {
+        const chartData5 = google.visualization.arrayToDataTable([
+          ['Category', 'Amount'],
+          ['Budget', data[0]],
+          ['Accrual', data[1]],
+          ['Cashout', data[2]]
+        ]);
+
+        const options5 = {
+          chart: {
+            title: 'Financial Overview'
+          },
+          bars: 'horizontal',
+          height: 150,
+          colors: ['#1b9e77', '#d95f02', '#7570b3']
+        };
+
+        const chart = new google.charts.Bar(document.getElementById(containerId));
+        chart.draw(chartData5, google.charts.Bar.convertOptions(options5));
+      }
+    </script>
+  </body>
+</html>
